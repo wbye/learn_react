@@ -170,7 +170,7 @@ setInterval(function () {
 
 var CheckLink = React.createClass({
     render: function () {
-        return (<a {...this.props}>{'√'}{this.props.children}</a>);
+        return (<a {...this.props}>{'√'} {this.props.children}</a>);
     }
 });
 
