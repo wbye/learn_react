@@ -44,9 +44,6 @@ var CreateStepContainer = React.createClass({
             new Error("unkonw create step status "+currentStatus);
         }
     },
-    selectStep: function (e) {
-        debugger
-    },
     componentDidMount: function () {
         //ajax 请求 get status
         this.setStepStatusBySign('content');
@@ -56,24 +53,25 @@ var CreateStepContainer = React.createClass({
         //render 里面调setState 导致死循环
         return (
             <div className="ui  three ordered steps">
-                <CreateStep title="名称" step="name" status={this.state.status.name} onClick={this.selectStep}></CreateStep>
-                <CreateStep title="内容" step="content" status={this.state.status.content} onClick={this.selectStep}></CreateStep>
-                <CreateStep title="创建" step="create" status={this.state.status.create} onClick={this.selectStep}></CreateStep>
+                <CreateStep title="名称" step="name" status={this.state.status.name}></CreateStep>
+                <CreateStep title="内容" step="content" status={this.state.status.content} ></CreateStep>
+                <CreateStep title="创建" step="create" status={this.state.status.create}></CreateStep>
             </div>
         );
     }
 });
 
 var  CreateStep = React.createClass({
-    test: function (e) {
+    selectStep: function (e) {
         debugger
+        this.props.step
     },
     render: function () {
         var status = this.props.status||'';
         var title = this.props.title||'';
 
         return (
-            <div className={status+" step"} onClick={this.test}>
+            <div className={status+" step"} onClick={this.selectStep}>
                 <div className="content">
                     <div className="title">{title}</div>
                 </div>

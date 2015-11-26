@@ -48,9 +48,6 @@ var CreateStepContainer = React.createClass({
             new Error("unkonw create step status " + currentStatus);
         }
     },
-    selectStep: function selectStep(e) {
-        debugger;
-    },
     componentDidMount: function componentDidMount() {
         //ajax 请求 get status
         this.setStepStatusBySign('content');
@@ -61,9 +58,9 @@ var CreateStepContainer = React.createClass({
         return React.createElement(
             "div",
             { className: "ui  three ordered steps" },
-            React.createElement(CreateStep, { title: "名称", step: "name", status: this.state.status.name, onClick: this.selectStep }),
-            React.createElement(CreateStep, { title: "内容", step: "content", status: this.state.status.content, onClick: this.selectStep }),
-            React.createElement(CreateStep, { title: "创建", step: "create", status: this.state.status.create, onClick: this.selectStep })
+            React.createElement(CreateStep, { title: "名称", step: "name", status: this.state.status.name }),
+            React.createElement(CreateStep, { title: "内容", step: "content", status: this.state.status.content }),
+            React.createElement(CreateStep, { title: "创建", step: "create", status: this.state.status.create })
         );
     }
 });
@@ -71,8 +68,9 @@ var CreateStepContainer = React.createClass({
 var CreateStep = React.createClass({
     displayName: "CreateStep",
 
-    test: function test(e) {
+    selectStep: function selectStep(e) {
         debugger;
+        this.props.step;
     },
     render: function render() {
         var status = this.props.status || '';
@@ -80,7 +78,7 @@ var CreateStep = React.createClass({
 
         return React.createElement(
             "div",
-            { className: status + " step", onClick: this.test },
+            { className: status + " step", onClick: this.selectStep },
             React.createElement(
                 "div",
                 { className: "content" },
